@@ -14,7 +14,7 @@
     <h3>No Widgets Exist</h3>
     <hr>
     {% else %}
-    <table>
+    <table class="pure-table pure-table-striped">
       <thead>
         <tr>
             <th>Description</th>
@@ -27,7 +27,7 @@
           <tr>
             <td>{{widg.description}}</td>
             <td>{{widg.quantity}}</td>
-            <td><a href="">X</a></td>
+            <td><a href="/{{ widg.id }}/delete/">X</a></td>
           </tr>
         {% endfor %}
       </tbody>

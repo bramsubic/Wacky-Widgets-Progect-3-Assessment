@@ -14,3 +14,8 @@ def add(request):
         quantity=request.POST['quantity'],
     )
     return redirect('/')
+
+def delete(request, widget_id):
+    widget = Widget.objects.get(id=widget_id)
+    widget.delete()
+    return redirect('/')
