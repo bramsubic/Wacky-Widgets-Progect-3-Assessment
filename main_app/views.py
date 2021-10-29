@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Widget
 from .forms import WidgetForm
+from django.db.models import Sum
 
 # Create your views here.
 def widget_index(request):
   widget_list = Widget.objects.all()
   widget_form = WidgetForm()
-  return render(request, 'index.html', { 'widget_list': widget_list, 'widget_form': widget_form})
+  total = Widget.objects.aggregate(Sum('quantity'))['quantity__sum']
+  print(total)
+  return render(request, 'index.html', { 'widget_list': widget_list, 'widget_form': widget_form, 'total': total})
 
 def add(request):
     Widget.objects.create(
